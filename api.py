@@ -103,7 +103,7 @@ def getter():
 def ct_scan_prediction():
     file = request.files.get('file')
     if not file:
-        return jsonify(Status=400, message='Image not found')
+        return jsonify(message='Image not found')
 
     # Prepare the image
     img = prepare_image()
@@ -115,14 +115,14 @@ def ct_scan_prediction():
     # prediction
     prediction = predict_results(models,img)
 
-    return jsonify(prediction=prediction, Status=200, Type = "CT-Scan")
+    return jsonify(prediction=prediction, Type = "CT-Scan")
 
 # Register xray route
 @app.route('/xray', methods=['POST'])
 def xray_prediction():
     file = request.files.get('file')
     if not file:
-        return jsonify(Status=400, message='Image not found')
+        return jsonify(message='Image not found')
 
     # Prepare the image
     img = prepare_image()
@@ -133,4 +133,4 @@ def xray_prediction():
     # prediction
     prediction = predict_results(models,img)
 
-    return jsonify(prediction=prediction, status=200, Type='X-ray')
+    return jsonify(prediction=prediction, Type='X-ray')
